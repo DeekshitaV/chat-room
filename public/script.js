@@ -40,7 +40,7 @@ send.addEventListener("click" , (e) => {
      }
  });
  
- socket.on("chat", (message, userName) => {
+ socket.on("create-message", (message, userName) => {
    console.log('received');
   messages.innerHTML =
     messages.innerHTML +
