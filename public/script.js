@@ -27,6 +27,11 @@ firebase.database().ref(ROOM_ID + '/messages').once( 'value' , (snapshot) => {
 let text = document.querySelector('#chat-message');
 let send = document.getElementById('send');
 let messages = document.querySelector('.messages');
+let joinCall = document.querySelector('#join');
+
+joinCall.addEventListener("click", () => { 
+      window.location.href = "https://videocall-deekshitaverma.herokuapp.com/" + ROOM_ID;
+});
 
 const sendData = (textMessage, userName) => {
     firebase.database().ref(ROOM_ID + '/messages').push({ name: userName, message: textMessage });
