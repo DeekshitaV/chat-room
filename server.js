@@ -19,7 +19,7 @@ app.get('/:room' , (req,res) => {
 io.on('connection' , (socket) => {
     socket.on("chat", ( roomId, message , userName) => {
         console.log("sent");
-       socket.broadcast.emit("create-message", message, userName);
+       io.to(roomId).emit('chat-message' , ( message , userName));
     }); 
 })
 
