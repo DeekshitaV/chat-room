@@ -13,10 +13,20 @@ let text = document.querySelector('#chat-message');
 let send = document.getElementById('send');
 let messages = document.querySelector('.messages');
 
+const sendData = (textMessage, userName) => {
+  firebase.database().ref( ROOM_ID + '/messages').push({ name : userName , message : textMessage});
+}
+
+const scrollToBottom = () => {
+        
+  let d = $('.main-chat-window');
+  d.scrollTop(d.prop('scrollHeight'));
+}
+
 send.addEventListener("click" , (e) => {
     if(text.value.length !== 0 ){
         socket.emit("chat" , (ROOM_ID, text.value , user) );
-       // sendData(text.value,user);     
+        sendData(text.value,user);     
         text.value = "";
         
     }
@@ -25,7 +35,7 @@ send.addEventListener("click" , (e) => {
  text.addEventListener("keydown" , (e) => {
      if(e.key === "Enter" && text.value.length !== 0 ){
          socket.emit("chat" , (ROOM_ID, text.value , user) );
-       //  sendData(text.value,user);
+         sendData(text.value,user);
          text.value = "";            
      }
  });
