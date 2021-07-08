@@ -17,9 +17,9 @@ app.get('/:room' , (req,res) => {
 })
 
 io.on('connection' , (socket) => {
-    socket.on("chat", (roomId, message , userName) => {
+    socket.on("chat", ( roomId, message , userName) => {
         console.log("sent");
-        io.to(roomId).emit("create-message", (message, userName));
+        io.emit("chat", (message, userName));
     }); 
 })
 
