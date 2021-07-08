@@ -17,6 +17,7 @@ app.get('/:room' , (req,res) => {
 })
 
 io.on('connection' , (socket) => {
+    socket.join(roomId);
     socket.on("chat", ( roomId, message , userName) => {
         console.log("sent");
        io.to(roomId).emit('create-message' , ( message , userName));
