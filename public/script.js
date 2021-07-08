@@ -30,27 +30,14 @@ send.addEventListener("click" , (e) => {
      }
  });
  
-//  socket.on("createMessage", (message, userName) => {
-//      console.log("hame bulaya");
-//      messages.innerHTML =
-//        messages.innerHTML +
-//        `<div class="message">
-//            <b><i class="far fa-user-circle"></i> <span> ${
-//              userName === user ? "me" : userName
-//            }</span> </b>
-//            <span>${message}</span>
-//        </div>`; 
-//      //scrollToBottom();
-//  });
-
- socket.on("createMessage" , (message,userName) => {
-    console.log("hame bulaya");
-    messages.innerHTML =
-      messages.innerHTML +
-      `<div class="message">
-          <b><i class="far fa-user-circle"></i> <span> ${
-            userName === user ? "me" : userName
-          }</span> </b>
-          <span>${message}</span>
-      </div>`; 
- })
+ socket.on("create-message", (message, userName) => {
+  messages.innerHTML =
+    messages.innerHTML +
+    `<div class="message">
+        <b><i class="far fa-user-circle"></i> <span> ${
+          userName
+        }</span> </b>
+        <span>${message}</span>
+    </div>`; 
+  scrollToBottom();
+});
