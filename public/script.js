@@ -9,11 +9,11 @@ do {
 } while (!username);
 const user = username;
 
-firebase.database().ref(ROOM_ID + '/messages').once( 'value' , (snapshot) => {
-  snapshot.forEach(element => {
+firebase.database().ref(ROOM_ID + '/messages').on( 'value' , (snapshot) => {
+   messages.innerHTML = "";
+   snapshot.forEach(element => {
       var obj = element.val();
-      messages.innerHTML =
-      messages.innerHTML +
+      messages.innerHTML += 
       `<div class="message">
           <b><i class="far fa-user-circle"></i> <span> ${
               obj.name
@@ -47,7 +47,6 @@ send.addEventListener("click", (e) => {
     if (text.value.length !== 0) {
 
         socket.emit("chat", ROOM_ID, text.value, user);
-        console.log(ROOM_ID, text.value, user);
         sendData(text.value, user);
         text.value = "";
 
@@ -57,22 +56,9 @@ send.addEventListener("click", (e) => {
 text.addEventListener("keydown", (e) => {
     if (e.key === "Enter" && text.value.length !== 0) {
       console.log(ROOM_ID, text.value, user);
-        socket.emit("chat", ROOM_ID, text.value, user);
         sendData(text.value, user);
         text.value = "";
 
     }
 });
 
- socket.on("create-message", (message, userName) => {
-  console.log(message, userName);
-  messages.innerHTML =
-    messages.innerHTML +
-    `<div class="message">
-        <b><i class="far fa-user-circle"></i> <span> ${
-          userName
-        }</span> </b>
-        <span>${message}</span>
-    </div>`; 
-  scrollToBottom();
-});

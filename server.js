@@ -21,15 +21,6 @@ var users = {};
 
 io.on("connection", (socket) => {
     console.log("userConnected");
-    socket.on("chat", ( roomId , message , userName) => {
-      console.log(roomId, message , userName );
-        users[userName] = roomId;
-        socket.join(roomId);
-        console.log(users);
-        console.log("chat joined");
-        io.to(roomId).emit("create-message", message,userName );
-        
-    })
 })
 
 server.listen(process.env.PORT || 3000);
