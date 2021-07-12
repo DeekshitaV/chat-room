@@ -40,7 +40,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: var(--basic-color);
+    background-color: var(--main-dark);
     height: 50px;
     border-radius: 5px;
     color: var(--main-brightcolor);

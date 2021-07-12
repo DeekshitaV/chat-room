@@ -28,6 +28,8 @@ let text = document.querySelector('#chat-message');
 let send = document.getElementById('send');
 let messages = document.querySelector('.messages');
 let joinCall = document.querySelector('#join');
+let invite = document.querySelector('#invite');
+
 
 joinCall.addEventListener("click", () => { 
       window.location.href = "https://videocall-deekshitaverma.herokuapp.com/" + ROOM_ID;
@@ -60,5 +62,10 @@ text.addEventListener("keydown", (e) => {
         text.value = "";
 
     }
+});
+
+invite.addEventListener("click", (e) => {
+    var link = 'mailto:attendee@example.org?Subject:Join My Teams Meeting&body=Link to my chat room : ' + window.location.href; 
+    window.open(link);
 });
 
